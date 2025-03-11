@@ -10,8 +10,8 @@ This project is an implementation of a robotic arm control system using potentio
 4. Potentiometers
 5. Jumper wires
 6. Power supply for servos
-7. Breadboard (optional,but recommended)
-8. waterproof measurements on the servos 
+7. Breadboard (optional, but recommended)
+8. Waterproof measurements on the servos
 
 ## Software Requirements
 
@@ -22,28 +22,47 @@ This project is an implementation of a robotic arm control system using potentio
 ## Circuit Diagram
 
 Connect the components as follows (the detailed visual diagram will be uploaded later):
-- Connect the PCA9685 board to the Arduino (SCL,SDA,V+,GND,VCC)  
+- Connect the PCA9685 board to the Arduino (SCL, SDA, V+, GND, VCC).
 - Connect each servo motor to the respective PWM channels on the PCA9685.
 - Connect each potentiometer to the analog input pins on the Arduino, with the middle pin of the potentiometers.
 
-## Code Explanation
-
-The provided code reads the values from five potentiometers and maps these values to corresponding angles for the servo motors. It then generates PWM signals to control the servos based on the mapped angles.
-
-### Servo and Potentiometer Configuration
-
-- `SERVOMIN` and `SERVOMAX` define the minimum and maximum pulse lengths for the servos.
-- Potentiometer pins are defined as `POT_PIN0`, `POT_PIN1`, `POT_PIN2`, `POT_PIN3`, and `POT_PIN4`.
-- Servo channels are defined as `SERVO_CHANNEL0`, `SERVO_CHANNEL1`, `SERVO_CHANNEL2`, `SERVO_CHANNEL3`, and `SERVO_CHANNEL4`.
-- The minimum and maximum angles for each servo are defined as `MIN_ANGLE` and `MAX_ANGLE` for each channel.
-
 ## Usage Instructions
 
-1. Connect the hardware components as described in the circuit diagram.
-2. Install the Adafruit PWM Servo Driver library in the Arduino IDE.
-3. Upload the provided code to the Arduino board.
-4. Open the Serial Monitor to view the potentiometer readings, angles, and pulse lengths.
-5. Adjust the potentiometers to control the servo motors.
+### Using Arduino IDE
+
+1. **Connect the Hardware**: Connect the hardware components as described in the circuit diagram.
+2. **Install Required Libraries**: Open the Arduino IDE. Go to `Sketch -> Include Library -> Manage Libraries...`, search for "Adafruit PWM Servo Driver Library" and "Wire", then install them.
+3. **Load the Code**: Copy the provided code into a new sketch in the Arduino IDE.
+4. **Save the Code**: Save the sketch. The folder name must match the sketch name.
+5. **Select the Board and Port**: Go to `Tools -> Board` and select your Arduino board (e.g., Arduino Uno). Then go to `Tools -> Port` and select the appropriate COM port.
+6. **Upload the Code**: Click the upload button in the Arduino IDE to upload the code to your Arduino board.
+7. **Open Serial Monitor**: Open the Serial Monitor (Ctrl+Shift+M) to view the potentiometer readings, angles, and pulse lengths reflected to the servos.
+8. **Adjust Potentiometers**: Adjust the potentiometers to control the servo motors.
+
+### Using Arduino CLI
+
+Assuming you are in an ARM-based OS, you may also run the code in **Arduino CLI**, a command-line style version of the original IDE. To run the code using the Arduino CLI, follow these steps:
+
+1. **Install Arduino CLI**: Follow the instructions on the [Arduino CLI GitHub page](https://github.com/arduino/arduino-cli) to install Arduino CLI on your OS.
+
+2. **Install the Required Libraries**: After installing the CLI on your computer, use the Arduino CLI to install the necessary libraries for this code. Open your terminal and run the following commands:
+   ```sh
+   arduino-cli lib install "Adafruit PWM Servo Driver Library"
+   arduino-cli lib install "Wire"
+   ```
+
+3. **Compile the Code**: Navigate to the directory containing your code and compile it using the Arduino CLI. Make sure that the name of the code **must** have the same name as the folder. Replace `your_sketch_folder` with the name of your sketch folder:
+   ```sh
+   cd path/to/your_sketch_folder
+   arduino-cli compile --fqbn arduino:avr:uno
+   ```
+
+4. **Upload the Code**: Connect your Arduino board to your computer and upload the compiled code. Replace `YOUR_OWN_COM_PORT` with the appropriate serial port for your system (such as `/dev/ttyACM0` on Linux):
+   ```sh
+   arduino-cli upload -p YOUR_OWN_COM_PORT --fqbn arduino:avr:uno
+   ```
+
+5. **Open Serial Monitor**: The terminal will show the details (such as angles and pulselength) once you've started to run the code.
 
 ## License
 
