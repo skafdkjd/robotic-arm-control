@@ -10,8 +10,8 @@ This project is an implementation of a robotic arm control system using potentio
 4. Potentiometers
 5. Jumper wires
 6. Power supply for servos
-7. Breadboard (optional)
-8. Underwater housing for electronics (if needed)
+7. Breadboard (optional,but recommended)
+8. waterproof measurements on the servos 
 
 ## Software Requirements
 
@@ -21,10 +21,10 @@ This project is an implementation of a robotic arm control system using potentio
 
 ## Circuit Diagram
 
-Connect the components as follows:
-- Connect the PCA9685 board to the Arduino using the I2C pins (SCL and SDA).
+Connect the components as follows (the detailed visual diagram will be uploaded later):
+- Connect the PCA9685 board to the Arduino (SCL,SDA,V+,GND,VCC)  
 - Connect each servo motor to the respective PWM channels on the PCA9685.
-- Connect each potentiometer to the analog input pins on the Arduino.
+- Connect each potentiometer to the analog input pins on the Arduino, with the middle pin of the potentiometers.
 
 ## Code Explanation
 
@@ -37,20 +37,6 @@ The provided code reads the values from five potentiometers and maps these value
 - Servo channels are defined as `SERVO_CHANNEL0`, `SERVO_CHANNEL1`, `SERVO_CHANNEL2`, `SERVO_CHANNEL3`, and `SERVO_CHANNEL4`.
 - The minimum and maximum angles for each servo are defined as `MIN_ANGLE` and `MAX_ANGLE` for each channel.
 
-### Setup Function
-
-The `setup()` function initializes the serial communication and the PCA9685 board. It also sets the PWM frequency to 50Hz, which is standard for servo motors.
-
-### Loop Function
-
-The `loop()` function performs the following steps:
-1. Reads the values from each potentiometer.
-2. Maps the potentiometer readings to servo angles.
-3. Maps the angles to the pulse length range.
-4. Sets the PWM signal for each servo channel.
-5. Outputs the potentiometer readings, angles, and pulse lengths to the Serial Monitor.
-6. Delays for 10ms to ensure smooth servo movement.
-
 ## Usage Instructions
 
 1. Connect the hardware components as described in the circuit diagram.
@@ -62,8 +48,3 @@ The `loop()` function performs the following steps:
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Adafruit Industries for the PCA9685 PWM driver and the associated library.
-- Arduino community for the support and resources.
